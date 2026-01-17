@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>محرر الوثيقة | وثيقة</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&family=Amiri:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="./index.html" style="display:flex; align-items:center; gap:0.5rem;">
+                <span style="font-size: 1.5rem;">⚖️</span> وثيقة
+            </a>
+        </div>
+        <div>
+            <button id="download-pdf" class="btn btn-primary">حفظ PDF 📥</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div id="editor-container" class="editor-layout">
+            <!-- Form Section -->
+            <div class="form-section">
+                <h3 id="doc-title" style="margin-bottom: 1.5rem; color: var(--primary-color);">بيانات الوثيقة</h3>
+                <form id="doc-form">
+                    <!-- Dynamic Fields -->
+                </form>
+
+                <!-- Dynamic Signatures Container will be injected here -->
+                <div id="dynamic-signatures-root"
+                    style="margin-top: 2rem; border-top: 2px solid var(--primary-color); padding-top: 1.5rem;">
+                    <h3>التواقيع المطلوبة</h3>
+                    <div id="sig-buttons-list" style="display:flex; flex-direction:column; gap:12px; margin-top:10px;">
+                        <!-- Buttons injected by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <h3 style="color: var(--secondary-color);">معاينة الوثيقة</h3>
+                <div id="document-preview" class="document-preview">
+                    <!-- Rendered Document HTML -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Signature Modal -->
+    <div id="sig-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="sig-modal-title">التوقيع</h3>
+            <div style="background: #fff; border: 1px solid #ddd; margin-bottom: 1rem;">
+                <canvas id="signature-pad" class="signature-pad" style="width: 100%; height: 250px;"></canvas>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                <p style="font-size: 0.9rem; color: #666;">يمكنك الرسم أعلاه أو</p>
+                <!-- Using a label for the file input makes it much more reliable on mobile -->
+                <label for="sig-file-input" class="btn btn-outline"
+                    style="cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+                    رفع صورة توقيع 🖼️
+                </label>
+                <input type="file" id="sig-file-input" accept="image/*"
+                    style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;" />
+            </div>
+
+            <div class="signature-actions" style="display: flex; gap: 10px; justify-content: center;">
+                <button id="save-sig" class="btn btn-primary">اعتماد التوقيع ✅</button>
+                <button id="clear-pad" class="btn btn-outline" style="border-color: #f44336; color: #f44336;">مسح
+                    ❌</button>
+                <button id="close-modal" class="btn btn-outline" style="border-color: #999; color: #999;">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./src/viewer.js"></script>
+</body>
+
+</html>
